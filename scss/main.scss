@@ -18,7 +18,9 @@ body {
 
 // Headings
 
-h1, h2, h3 {
+h1, 
+h2, 
+h3 {
     margin: 0;
     font-weight: 400;
 
@@ -45,7 +47,7 @@ header {
 }
 
 .text-secondary {
-    color: $scondary-color;
+    color: $secondary-color;
 }
 
 main {
@@ -59,7 +61,7 @@ main {
             padding: 0.4rem;
 
             &:hover{
-                color: $scondary-color;
+                color: $secondary-color;
                 @include easeOut;
             }
         }
