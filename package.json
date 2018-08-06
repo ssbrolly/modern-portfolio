@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "Resposive Porfolio Website",
   "main": "index.js",
+  "homepage":"https://ssbrolly.github.io/modern-porfolio",
   "scripts": {
-    "sass": "node-sass -w scss/ -o dist/css/ --recursive"
+    "sass": "node-sass -w scss/ -o dist/css/ --recursive",
+    "deploy": "gh-pages -d dist"
   },
   "author": "Usong Cho",
   "license": "MIT",
   "dependencies": {
+    "gh-pages": "^1.2.0",
     "node-sass": "^4.9.2",
     "npm": "^6.3.0"
   }
