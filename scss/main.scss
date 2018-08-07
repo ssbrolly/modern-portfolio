@@ -7,6 +7,7 @@
     box-sizing: border-box;
 }
 
+
 body {
     @include background;
     background: $primary-color;
@@ -15,10 +16,17 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5;
+    opacity: 1;
+    transition: opacity 0.3s linear;
+
+    &.fade {
+        opacity: 0;
+        transition: none;
+        
+    }
 }
 
 // Headings
-
 h1, 
 h2, 
 h3 {
@@ -143,14 +151,14 @@ main {
     margin-top: 1rem;
 
     div {
-        font-size: 2rem;
+        font-size: 22px;
         border: 3px #fff solid;
-        padding: 1.5rem 2.5rem;
+        padding: 0.5rem 1.5rem;
         margin-bottom: 3rem;
         @include easeOut;
 
         &:hover {
-            padding: 0.5rem 1.5rem;
+            padding: 1rem 2rem;
             background: $secondary-color;
             color: set-text-color($secondary-color);
 

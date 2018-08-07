@@ -101,7 +101,9 @@ body {
   height: 100%;
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.5; }
+  line-height: 1.5;
+  opacity: 1;
+  transition: opacity 0.3s linear; }
   body#bg-img {
     background: url(../img/background.jpg);
     background-attachment: fixed;
@@ -115,6 +117,9 @@ body {
       height: 100%;
       z-index: -1;
       background: rgba(68, 68, 68, 0.9); }
+  body.fade {
+    opacity: 0;
+    transition: none; }
 
 h1,
 h2,
@@ -202,13 +207,13 @@ main {
   align-items: center;
   margin-top: 1rem; }
   .boxes div {
-    font-size: 2rem;
+    font-size: 22px;
     border: 3px #fff solid;
-    padding: 1.5rem 2.5rem;
+    padding: 0.5rem 1.5rem;
     margin-bottom: 3rem;
     transition: all 0.5s ease-out; }
     .boxes div:hover {
-      padding: 0.5rem 1.5rem;
+      padding: 1rem 2rem;
       background: #eece1a;
       color: #000; }
       .boxes div:hover span {

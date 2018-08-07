@@ -12,6 +12,9 @@
 </head>
 
 <body>
+    <script>
+        document.body.classList.add('fade');
+    </script>
     <header>
         <div class="menu-btn">
             <div class="btn-line"></div>
@@ -74,6 +77,12 @@
     <footer id="main-footer">
         Copyright &copy; 2018
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(e) {
+            document.body.classList.remove('fade');
+         }); 
+     </script>
 
     <script src="js/main.js"></script>
 </body>
