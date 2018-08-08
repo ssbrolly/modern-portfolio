@@ -12,6 +12,9 @@
 </head>
 
 <body id="bg-img">
+    <script>
+        document.body.classList.add('fade');
+    </script>
     <header>
         <div class="menu-btn">
             <div class="btn-line"></div>
@@ -59,7 +62,12 @@
             </a>
         </div>
     </main>
-
+  
+    <script>
+        document.addEventListener("DOMContentLoaded", function(e) {
+            document.body.classList.remove('fade');
+        }); 
+     </script>
     <script src="js/main.js"></script>
 </body>
 

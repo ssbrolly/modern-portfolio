@@ -19,7 +19,7 @@ function toggleMenu() {
         navItems.forEach(function(item) {
             item.classList.add("show");
         });
-
+        
         // set menu state
         showMenu = true;
     } else {
@@ -28,10 +28,11 @@ function toggleMenu() {
         menuNav.classList.remove("show");
         menuBranding.classList.remove("show");
         navItems.forEach(item => item.classList.remove("show"));
-
+        
         // reset menu state
         showMenu = false;
     }
 }
 
-
+    
+    
