@@ -46,19 +46,24 @@ const words = [
   'magic',
   'master',
   'space',
-  'definition'
+  'definition',
+  'wordbeater',
+  'refrigerator',
+  'knife',
+  'spoon',
+  'induction',
+  'electricity'
 ];
 
 // Initialize Game
 function init() {
   seconds.innerHTML = currentLevel;
   showWord(words);
-  clearInput();
-  wordInput.addEventListener("input", startMatch);
-  setInterval(countdown, 1000);
-  // setInterval(checkStatus, 1000);
-};
+  wordInput.addEventListener("input", startMatch, setInterval(countdown, 1000));
+  // setInterval(checkStatus, 1000); 
+    // setInterval(countdown, 1000);
 
+};
 // Start Match
 function startMatch() {
   if (matchWords()) {
@@ -68,7 +73,7 @@ function startMatch() {
     wordInput.value = "";
     score++;
   } 
-
+  
   if (score === -1) {
     scoreDisplay = 0;
   }
@@ -102,31 +107,11 @@ function countdown() {
     score = -1;
     scoreDisplay.innerHTML = 0;
     isPlaying = false;
+    wordInput.value = "";
   } 
   timeDisplay.innerHTML = time;
 };
 
-function clearInput() {
-  if (time === 0) {
-    wordInput.value = "";
-  };
-};
 
-
-// Check game status
-function checkStatus() {
-  if (time === 0) {
-    message.innerHTML = "Game Over!!!";
-  };
-};
-
-// Keep score
-function keepScore() {
-  if (wordInput === wordInput) {
-    score++;
-    time;
-  }
-  scoreDisplay.innerHTML = score;
-}
 
 
