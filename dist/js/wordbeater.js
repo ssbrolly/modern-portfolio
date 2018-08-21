@@ -84,5 +84,7 @@ function countDown() {
 function countUp() {
     if (time < 0) {
         time++;
+    } else if (time === 0) {
+        message.innerHTML 
     }
 }
