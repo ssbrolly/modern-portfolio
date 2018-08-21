@@ -80,3 +80,9 @@ function countDown() {
     }
     timeDisplay.innerHTML = time;
 }
+
+function countUp() {
+    if (time < 0) {
+        time++;
+    }
+}
