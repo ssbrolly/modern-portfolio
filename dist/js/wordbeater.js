@@ -83,8 +83,8 @@ function countDown() {
 
 function countUp() {
     if (time < 0) {
-        time++;
+        time ++;
     } else if (time === 0) {
-        message.innerHTML 
+        message.innerHTML = "Starting"
     }
 }
