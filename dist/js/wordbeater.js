@@ -88,3 +88,9 @@ function countUp() {
         message.innerHTML = "Starting"
     }
 }
+
+function startTime() {
+    if (isPlaying) {
+        message.innerHTML = "Start"
+    }
+}
