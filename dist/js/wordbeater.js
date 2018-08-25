@@ -79,18 +79,5 @@ function countDown() {
         message.innerHTML = "Game Over"
     }
     timeDisplay.innerHTML = time;
-}
+};
 
-function countUp() {
-    if (time < 0) {
-        time ++;
-    } else if (time === 0) {
-        message.innerHTML = "Starting"
-    }
-}
-
-function startTime() {
-    if (isPlaying) {
-        message.innerHTML = "Start"
-    }
-}
