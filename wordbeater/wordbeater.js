@@ -62,13 +62,30 @@ function showWord(words) {
 function init() {
     seconds.innerHTML = currentLevel;
     showWord(words);
-    setInterval(countDown, 1000);
+    wordInput.addEventListener("input", startMatch, setInterval(countDown, 1000));
+}
+
+function startMatch() {
+    if (matchInput()) {
+        isPlaying = true;
+        time = currentLevel + 1;
+        showWord(words);
+        wordInput.value = "";
+        score++;
+    } 
+     if (score === -1) {
+        scoreDisplay = 0;
+    }
+    scoreDisplay.innerHTML = score;
 }
 
 function matchInput() {
     if (wordInput.value === currentWord.innerHTML) {
-        message.innerHTML = 'Correct';
+        message.innerHTML = "Correct";
         return true;
+    } else {
+        message.innerHTML = "";
+        return false;
     }
 }  
 
@@ -76,7 +93,11 @@ function countDown() {
     if (time > 0) {
         time--;
     } else if (time === 0) {
-        message.innerHTML = "Game Over"
+        message.innerHTML = "Game Over";
+        scoreDisplay.innerHTML = 0;
+        score = -1;
+        isPlaying = false;
+        
     }
     timeDisplay.innerHTML = time;
 };
