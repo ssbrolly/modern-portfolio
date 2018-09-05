@@ -3,7 +3,7 @@ window.addEventListener("load", init);
 // DOM Elements
 const wordInput = document.querySelector("#word-input");
 const currentWord = document.querySelector("#current-word");
-const scoreDisplay = document.querySelector("#score");
+let scoreDisplay = document.querySelector("#score");
 const timeDisplay = document.querySelector("#time");
 const message = document.querySelector("#message");
 const seconds = document.querySelector("#seconds");
@@ -54,6 +54,8 @@ const words = [
     'electricity'
   ];
 
+let countDownInterval = null;  
+
 function showWord(words) {
     let randIndex = Math.floor(Math.random() * words.length);
     currentWord.innerHTML = words[randIndex];
@@ -62,8 +64,23 @@ function showWord(words) {
 function init() {
     seconds.innerHTML = currentLevel;
     showWord(words);
-    wordInput.addEventListener("input", startMatch, setInterval(countDown, 1000));
+    startCountdown();
+    wordInput.addEventListener("input", startMatch);
 }
+
+function startCountdown() {
+    if (time === 0) {
+        wordInput.value = "";
+    } else {
+        wordInput.value = currentWord.innerHTML;
+    }
+    countDownInterval = setInterval(countDown, 1000)
+};
+
+function stopCountdown() {
+    clearInterval(countDownInterval);
+    countDownInterval = null;
+};
 
 function startMatch() {
     if (matchInput()) {
@@ -72,6 +89,7 @@ function startMatch() {
         showWord(words);
         wordInput.value = "";
         score++;
+        startCountdown();
     } 
      if (score === -1) {
         scoreDisplay = 0;
@@ -97,7 +115,8 @@ function countDown() {
         scoreDisplay.innerHTML = 0;
         score = -1;
         isPlaying = false;
-        
+        stopCountdown();
+        wordInput.value = "";
     }
     timeDisplay.innerHTML = time;
 };
