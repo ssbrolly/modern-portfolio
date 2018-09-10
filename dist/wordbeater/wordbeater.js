@@ -64,23 +64,19 @@ function showWord(words) {
 function init() {
     seconds.innerHTML = currentLevel;
     showWord(words);
-    startCountdown();
+    // startCountdown();
     wordInput.addEventListener("input", startMatch);
+    setInterval(countDown, 1000);
 }
 
-function startCountdown() {
-    if (time === 0) {
-        wordInput.value = "";
-    } else {
-        wordInput.value = currentWord.innerHTML;
-    }
-    countDownInterval = setInterval(countDown, 1000)
-};
+// function startCountdown() {
+//     countDownInterval = setInterval(countDown, 1000)
+// };
 
-function stopCountdown() {
-    clearInterval(countDownInterval);
-    countDownInterval = null;
-};
+// function stopCountdown() {
+//     clearInterval(countDownInterval);
+//     countDownInterval = null;
+// };
 
 function startMatch() {
     if (matchInput()) {
@@ -89,7 +85,7 @@ function startMatch() {
         showWord(words);
         wordInput.value = "";
         score++;
-        startCountdown();
+        // startCountdown();
     } 
      if (score === -1) {
         scoreDisplay = 0;
@@ -99,10 +95,8 @@ function startMatch() {
 
 function matchInput() {
     if (wordInput.value === currentWord.innerHTML) {
-        message.innerHTML = "Correct";
         return true;
     } else {
-        message.innerHTML = "";
         return false;
     }
 }  
@@ -115,8 +109,7 @@ function countDown() {
         scoreDisplay.innerHTML = 0;
         score = -1;
         isPlaying = false;
-        stopCountdown();
-        wordInput.value = "";
+        // stopCountdown();
     }
     timeDisplay.innerHTML = time;
 };
