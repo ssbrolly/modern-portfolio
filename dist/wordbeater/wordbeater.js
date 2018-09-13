@@ -14,7 +14,6 @@ const levels = {
 };
 
 let currentLevel = levels.easy;
-
 let time = currentLevel;
 let score = 0;
 let isPlaying;
@@ -83,7 +82,6 @@ function addEventListeners() {
 
 function startGame() {
     reset();
-
     isPlaying = true;
     seconds.innerHTML = currentLevel;
     timeDisplay.innerHTML = currentLevel;
