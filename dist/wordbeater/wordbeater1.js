@@ -83,14 +83,20 @@ function addEventListeners() {
 function startGame() {
     reset();
     isPlaying = true;
-    seconds.innerHTML = '';
-    timeDisplay.innerHTML = '';
-    wordInput.focus();
+    seconds.innerHTML = currentLevel;
+    timeDisplay.innerHTML = currentLevel;
     time = currentLevel;
+    wordInput.focus();
 
     scoreDisplay.innerHTML = score;
-
     
+    showWords(words);
+    timeoutInterval = setInterval(countDown, 1000);
+    wordInput.addEventListener('input', compareWords);
+};
 
-}
+function showWords(words) {
+    randIndex = Math.floor(Math.random() * words.length);
+    currentWord.innerHTML = words[randIndex];
+};
 
