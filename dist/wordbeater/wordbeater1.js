@@ -82,21 +82,82 @@ function addEventListeners() {
 
 function startGame() {
     reset();
-    isPlaying = true;
     seconds.innerHTML = currentLevel;
     timeDisplay.innerHTML = currentLevel;
     time = currentLevel;
     wordInput.focus();
-
     scoreDisplay.innerHTML = score;
-    
+
     showWords(words);
     timeoutInterval = setInterval(countDown, 1000);
     wordInput.addEventListener('input', compareWords);
 };
 
-function showWords(words) {
-    randIndex = Math.floor(Math.random() * words.length);
-    currentWord.innerHTML = words[randIndex];
+function compareWords() {
+    if(matchWords() && isPlaying) {
+        time = currentLevel + 1;
+        showWords(words);
+        wordInput.value = '';
+        score++;
+
+        stopTimer();
+        startGame();
+    };
 };
+
+function matchWord() {
+    if (wordInput.value === currentWord.innerHTML) {
+        return true;
+    } else {
+        return false;
+    };
+};
+
+function stopTimer() {
+    clearInterval(timeoutInterval);
+    timeoutInterval = null;
+}
+
+function countDown() {
+    if (time > 0) {
+        time--;
+    } else {
+        endGame();
+    };
+    timeDisplay.innerHTML = time;
+};
+
+function endGame() {
+    message.innerHTML = 'Game Over';
+    isPlaying = false;
+    stopTimer();
+    showMenuUI();
+};
+
+function reset() {
+    wordInput.value = '';
+    message.innerHTML = '';
+    stopTimer();
+    showGameplayUI();
+};
+
+function showWords() {
+    randIndex = Math.floor(Math.random() * words.length);
+    currentWord.innerHTML = words[randIndex]; 
+};
+
+function showMenuUI() {
+    document.queryselector('.startMenu').style.opacity = 1;
+    document.queryselector('.gameUI').style.opacity = 0.5;
+    startButton.disable = false;
+    wordInput.disable = true;
+};
+
+function showGameplayUI() {
+    document.queryselector('.startMenu').style.opacity = 0.5;
+    document.queryselector('.gameUI').style.opacity = 1;
+    startButton.disable = true;
+    wordInput.disable = false;
+};
+
 
