@@ -7,19 +7,18 @@ const message = document.querySelector("#message");
 const startButton = document.querySelector("button[data-btn-start=true]");
 const difficultyRadios = document.querySelectorAll("input[name='difficulty']");
 
-const levels = {
-    easy: 5,
-    medium: 2,
-    hard: 1,
+let levels = {
+    easy: 4,
+    medium: 3,
+    hard: 2,
 };
 
-
-let currentLevel = levels.easy;
+let currentLevel = levels.medium;
 let time = currentLevel;
-let score = 0;
 let isPlaying;
+let score = 0;
 
-const words =[
+const words = [
     'hat',
     'river',
     'lucky',
@@ -58,106 +57,92 @@ init();
 let timeoutInterval = null;
 
 function init() {
-    addEventListeners();
     showMenuUI();
+    addEventListener();
 };
 
-function addEventListeners() {
+function addEventListener() {
     startButton.addEventListener('click', () => {
-        let selected = document.queryselector('input[name="difficulty"]:checked');
-        if (!selected) alert('Please select a difficulty');
+        let selected = document.querySelector('input[name="difficulty"]:checked');
+        if (!selected) alert('Please Select a Difficulty');
         else {
             currentLevel = levels[selected.value];
             score = 0;
             startGame();
         };
     });
-    difficultyRadios.forEach((radio) => {
+    difficutyRadios.forEach((radio) => {
         radio.addEventListener('change', (e) => {
             currentLevel = levels[e.target.value];
-            seconds.innerHTML = currentLevel;
         });
     });
 };
 
 function startGame() {
     reset();
-    seconds.innerHTML = currentLevel;
+    isPlaying = true;
     timeDisplay.innerHTML = currentLevel;
     time = currentLevel;
-    wordInput.focus();
     scoreDisplay.innerHTML = score;
+    wordInput.focus();
 
     showWords(words);
     timeoutInterval = setInterval(countDown, 1000);
     wordInput.addEventListener('input', compareWords);
 };
 
-function compareWords() {
-    if(matchWords() && isPlaying) {
-        time = currentLevel + 1;
-        showWords(words);
-        wordInput.value = '';
-        score++;
+function countDown() {
+    if (time > 0) {
+        time--;
+    } else {
+        emdGame();
+    };
+    timeDisplay.innerHTML = time;
+};
 
-        stopTimer();
+function compareWords() {
+    if (wordInput.value === currentWord.innerHTML && isPlaying) {
+        time = currentLevel + 1;
+        score++;
+        wordInput.value = '';
+        showWords(words);
         startGame();
     };
 };
 
-function matchWord() {
-    if (wordInput.value === currentWord.innerHTML) {
-        return true;
-    } else {
-        return false;
-    };
+function endGame() {
+    message.innerHTML = 'Game Over';
+    showMenuUI();
+    stopTimer();
 };
 
 function stopTimer() {
     clearInterval(timeoutInterval);
     timeoutInterval = null;
-}
-
-function countDown() {
-    if (time > 0) {
-        time--;
-    } else {
-        endGame();
-    };
-    timeDisplay.innerHTML = time;
-};
-
-function endGame() {
-    message.innerHTML = 'Game Over';
-    isPlaying = false;
-    stopTimer();
-    showMenuUI();
 };
 
 function reset() {
-    wordInput.value = '';
     message.innerHTML = '';
+    wordInput.value = '';
     stopTimer();
     showGameplayUI();
 };
 
-function showWords() {
-    randIndex = Math.floor(Math.random() * words.length);
-    currentWord.innerHTML = words[randIndex]; 
+function showWords(words) {
+    let randIndex = Math.floor(Math.random() * words.length);
+    currentWord = words[randIndex];
 };
 
 function showMenuUI() {
-    document.queryselector('.startMenu').style.opacity = 1;
-    document.queryselector('.gameUI').style.opacity = 0.5;
+    document.querySelector('.startMenu').style.opacity = 1;
+    document.querySelector('.gameUI').style.opacity = 0.5;
     startButton.disable = false;
     wordInput.disable = true;
 };
 
 function showGameplayUI() {
-    document.queryselector('.startMenu').style.opacity = 0.5;
-    document.queryselector('.gameUI').style.opacity = 1;
+    document.querySelector('.startMenu').style.opacity = 0.5;
+    document.querySelector('.gameUI').style.opacity = 1;
     startButton.disable = true;
     wordInput.disable = false;
 };
-
-

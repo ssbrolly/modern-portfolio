@@ -8,9 +8,9 @@ const startButton = document.querySelector("button[data-btn-start=true]");
 const difficultyRadios = document.querySelectorAll("input[name='difficulty']");
 
 const levels = {
-    easy: 5,
-    medium: 2,
-    hard: 1,
+    easy: 4,
+    medium: 3,
+    hard: 2,
 };
 
 let currentLevel = levels.easy;
@@ -120,24 +120,24 @@ function showWords(words) {
 };
 
 function compareWords() {
-    if (matchInput() && isPlaying) {
+    // if (matchInput() && isPlaying) {
+    if (wordInput.value === currentWord.innerHTML) {
         time = currentLevel + 1;
         showWords(words);
         wordInput.value = "";
         score++;
-
-        stopTimer();
+        
+        // stopTimer();
         startGame();
     };
 };
 
-function matchInput() {
-    if (wordInput.value === currentWord.innerHTML) {
-        return true;
-    } else {
-        return false;
-    };
-};
+// function matchInput() {
+//         return true;
+//     } else {
+//         return false;
+//     };
+// };
 
 function countDown() {
     if (time > 0) {
