@@ -17,6 +17,7 @@ let currentLevel = levels.easy;
 let time = currentLevel;
 let score = 0;
 let isPlaying;
+let timeoutInterval = null;
 
 let words = [
     'hat',
@@ -54,8 +55,6 @@ let words = [
 
 init();
 
-let timeoutInterval = null;
-
 function init() {
     addEventListeners();
     showMenuUI();
@@ -72,7 +71,7 @@ function addEventListeners() {
             startGame();
         };
     });
-    difficultyRadios.forEach((radio) => {
+    difficultyRadios.forEach(radio => {
         radio.addEventListener("change", (e) => {
             currentLevel = levels[e.target.value];
             seconds.innerHTML = currentLevel;
@@ -121,7 +120,7 @@ function showWords(words) {
 
 function compareWords() {
     // if (matchInput() && isPlaying) {
-    if (wordInput.value === currentWord.innerHTML) {
+    if (wordInput.value === currentWord.innerHTML && isPlaying) {
         time = currentLevel + 1;
         showWords(words);
         wordInput.value = "";
