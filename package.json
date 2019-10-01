@@ -8,7 +8,7 @@
     "sass": "node-sass -w scss/ -o dist/css/ --recursive",
     "deploy": "gh-pages -d dist"
   },
-  "author": "Usong Cho",
+  "author": "USong Cho",
   "license": "MIT",
   "dependencies": {
     "gh-pages": "^1.2.0",
@@ -16,3 +16,7 @@
     "npm": "^6.4.1"
   }
 }
+
+
+
+
